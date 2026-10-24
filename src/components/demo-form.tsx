@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { AlertCircle, Check, CheckCircle2, Copy, ExternalLink, Loader2 } from "lucide-react";
 import { EMAIL_RE, PHONE_RE, isPreviewMode, postLead, readJson } from "@/lib/lead";
-import { CONTACT_EMAIL, DEMO_LOGINS, LEAD_DEMO_TYPE, LEAD_SOURCE, LEAD_TAG, PRODUCT } from "@/lib/site";
+import { CONTACT_EMAIL, DEMO_LOGINS, LEAD_DEMO_TYPE, LEAD_SOURCE, LEAD_TAG, PRODUCT, PRODUCT_KEY } from "@/lib/site";
 import { btn } from "@/components/ui";
 import { FIELD } from "@/components/contact-form";
 import { cn } from "@/lib/utils";
@@ -77,7 +77,7 @@ export function DemoForm() {
     if (isPreviewMode()) { setStep("preview"); return; }
     setSending(true); setServerError(null);
     try {
-      const base = { product: PRODUCT, tag: LEAD_TAG, source: LEAD_SOURCE, name: draft.name.trim(), phone: draft.phone.trim(), email: draft.email.trim(), website, locale: "en" };
+      const base = { product: PRODUCT_KEY, tag: LEAD_TAG, source: LEAD_SOURCE, name: draft.name.trim(), phone: draft.phone.trim(), email: draft.email.trim(), website, locale: "en" };
       const res = await postLead(
         LEAD_DEMO_TYPE === "demo"
           ? { type: "demo", ...base }

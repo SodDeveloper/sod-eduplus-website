@@ -12,12 +12,14 @@ export const CORE_LINE =
 const RAW_ENDPOINT = process.env.NEXT_PUBLIC_LEAD_ENDPOINT ?? "https://erp.sodraqam.com/api/website-lead";
 export const LEAD_ENDPOINT = RAW_ENDPOINT === "off" ? "" : RAW_ENDPOINT;
 /**
- * "contact" (default): demo requests are posted as a contact lead so the product, tag and source
- * travel in the interest/message text the shared endpoint records.
- * "demo": post type "demo" and read { demos: { full, lite } } from a product-aware endpoint.
+ * "demo" (default): post type "demo" with product "eduplus"; the shared endpoint tags the lead
+ * SOD EduPlus and returns { demos: { full, lite } }.
+ * "contact": fallback that posts the demo request as a contact lead (no logins returned).
  */
-export const LEAD_DEMO_TYPE = process.env.NEXT_PUBLIC_LEAD_DEMO_TYPE === "demo" ? "demo" : "contact";
+export const LEAD_DEMO_TYPE = process.env.NEXT_PUBLIC_LEAD_DEMO_TYPE === "contact" ? "contact" : "demo";
 export const PRODUCT = "SOD EduPlus";
+/** Product key the shared endpoint uses to pick EduPlus tag, source and demo logins. */
+export const PRODUCT_KEY = "eduplus";
 export const LEAD_TAG = "SOD EduPlus";
 export const LEAD_SOURCE = "Website - sodeduplus.com";
 

@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { EMAIL_RE, PHONE_RE, isPreviewMode, postLead } from "@/lib/lead";
-import { CONTACT_EMAIL, LEAD_SOURCE, LEAD_TAG, PRODUCT } from "@/lib/site";
+import { CONTACT_EMAIL, LEAD_SOURCE, LEAD_TAG, PRODUCT, PRODUCT_KEY } from "@/lib/site";
 import { btn } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +29,7 @@ export function ContactForm({ kind }: { kind: "contact" | "pricing" }) {
     try {
       const interest = `${PRODUCT}: ${data.interest || (kind === "pricing" ? "Pricing" : "General enquiry")}`;
       const message = `[${LEAD_TAG} · ${LEAD_SOURCE} · ${kind} form]\n${data.message || ""}`.trim();
-      const res = await postLead({ ...data, interest, message, product: PRODUCT, tag: LEAD_TAG, source: LEAD_SOURCE, locale: "en" });
+      const res = await postLead({ ...data, interest, message, product: PRODUCT_KEY, tag: LEAD_TAG, source: LEAD_SOURCE, locale: "en" });
       if (!res.ok) throw new Error(String(res.status));
       setStatus("ok"); form.reset();
     } catch {
