@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #252F78;
+  --color-navy-deep: #1B2563;
+  --color-blue-brand: #4255DE;
+  --color-teal: #25AEAC;
+  --color-mint: #40E1C2;
+  --color-mist: #F4F6FB;
+  --color-ink: #141a45;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-white text-ink antialiased; }
+.card-shadow { box-shadow: 0 1px 2px rgb(20 26 69 / 0.06), 0 12px 32px -12px rgb(20 26 69 / 0.18); }
+.brand-gradient { background: linear-gradient(135deg, #1B2563 0%, #252F78 45%, #1f6f8f 80%, #25AEAC 100%); }
+.text-gradient { background: linear-gradient(90deg, #25AEAC, #40E1C2); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
