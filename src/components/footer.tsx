@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Mail } from "lucide-react";
 import { CONTACT_EMAIL, COUNTRIES, NAV, withBase } from "@/lib/site";
 import { MODULES } from "@/lib/modules";
 import { ButtonLink, Container } from "@/components/ui";
@@ -31,7 +32,7 @@ export function Footer() {
             <li><Link className="hover:text-mint" href="/about/">About</Link></li>
             <li><Link className="hover:text-mint" href="/contact/">Contact</Link></li>
             <li><Link className="hover:text-mint" href="/blog/">Blog</Link></li>
-            <li><a className="break-all hover:text-mint" href={`mailto:${CONTACT_EMAIL}`}>Email: {CONTACT_EMAIL}</a></li>
+            <li><a className="inline-flex items-center gap-2 break-all hover:text-mint" href={`mailto:${CONTACT_EMAIL}`} aria-label={`Email ${CONTACT_EMAIL}`}><Mail className="h-4 w-4 shrink-0" aria-hidden />{CONTACT_EMAIL}</a></li>
           </ul>
         </div>
       </Container>

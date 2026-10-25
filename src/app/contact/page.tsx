@@ -16,9 +16,11 @@ export default function ContactPage() {
           <div>
             <h2 className="text-2xl font-extrabold text-navy">Get in touch</h2>
             <ul className="mt-6 space-y-4">
-              <li className="flex gap-3">
-                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden />
-                <span><span className="block font-semibold text-navy">Email</span><a href={`mailto:${CONTACT_EMAIL}`} className="break-all text-sm text-ink/70 hover:text-navy">{CONTACT_EMAIL}</a></span>
+              <li>
+                <a href={`mailto:${CONTACT_EMAIL}`} aria-label={`Email ${CONTACT_EMAIL}`} className="flex items-center gap-3 break-all font-semibold text-navy hover:text-teal">
+                  <Mail className="h-5 w-5 shrink-0 text-teal" aria-hidden />
+                  {CONTACT_EMAIL}
+                </a>
               </li>
               <li className="flex gap-3">
                 <Globe className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden />
