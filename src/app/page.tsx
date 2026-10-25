@@ -32,6 +32,8 @@ const MESSAGES = [
   { title: "Clear dashboards for leaders", body: "Principal and admin views of every module, every morning." },
 ];
 
+const SHOW_CLIENT_LISTING = false;
+
 export default function Home() {
   return (
     <>
@@ -178,7 +180,9 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Pilot strip (placeholder until names are approved) */}
+      {/* Client listing hidden for now (Ragesh, 25 Oct 2026); restore when client names are approved.
+      */}
+      {SHOW_CLIENT_LISTING && (
       <section className="py-14">
         <Container>
           <p className="text-center text-sm font-semibold uppercase tracking-widest text-ink/50">Trusted by schools</p>
@@ -189,6 +193,7 @@ export default function Home() {
           </ul>
         </Container>
       </section>
+      )}
 
       <CtaBand />
     </>
