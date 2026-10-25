@@ -87,10 +87,10 @@ export const MODULES: Module[] = [
   },
   {
     slug: "transport",
-    name: "Transport & bus tracking",
-    short: "Routes, stops and bus tracking.",
+    name: "Transport",
+    short: "Routes, stops and bus allocation.",
     intro: "Plan routes and stops, assign students to buses and keep parents informed about pick-up and drop-off.",
-    benefits: ["Routes, stops and vehicle assignment", "Student transport allocation", "Bus tracking for families"],
+    benefits: ["Routes, stops and vehicle assignment", "Student transport allocation"],
     shot: "18_transport_dashboard",
     editions: { full: true, lite: true },
   },
