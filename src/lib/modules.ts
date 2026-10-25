@@ -83,7 +83,7 @@ export const MODULES: Module[] = [
     benefits: ["Student wallets with parent top-ups", "Quick cashier screen for the canteen", "Daily sales and wallet reports"],
     shot: "17_canteen_wallets",
     video: "04_library_canteen",
-    editions: { full: true, lite: true },
+    editions: { full: true, lite: false },
   },
   {
     slug: "transport",
@@ -92,7 +92,7 @@ export const MODULES: Module[] = [
     intro: "Plan routes and stops, assign students to buses and keep parents informed about pick-up and drop-off.",
     benefits: ["Routes, stops and vehicle assignment", "Student transport allocation"],
     shot: "18_transport_dashboard",
-    editions: { full: true, lite: true },
+    editions: { full: true, lite: false },
   },
   {
     slug: "announcements",
