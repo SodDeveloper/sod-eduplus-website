@@ -7,7 +7,8 @@ import { CtaBand } from "@/components/cta";
 export const metadata = pageMeta("Editions: Full vs Lite", "Compare SOD EduPlus Full, the complete innovative school ERP with every module, and Lite, the essential modules for smaller schools.", "/editions/");
 
 const EXTRA = [
-  { name: "Payroll pay runs", full: true, lite: false },
+  { name: "Payroll pay runs, gratuity and WPS file", full: true, lite: false },
+  { name: "Advanced fee accounting (deferred revenue, write-offs, bank matching)", full: true, lite: false },
   { name: "Parent & student portal", full: true, lite: true },
   { name: "English and Arabic interface", full: true, lite: true },
 ];
@@ -37,15 +38,15 @@ export default function EditionsPage() {
             ))}
           </div>
 
-          <div className="mt-16 overflow-x-auto rounded-2xl border border-navy/10">
-            <table className="w-full min-w-[480px] text-left text-sm">
+          <div className="mt-16 overflow-hidden rounded-2xl border border-navy/10">
+            <table className="w-full table-fixed text-left text-sm">
               <caption className="sr-only">Modules by edition</caption>
               <thead className="bg-mist text-navy">
-                <tr><th scope="col" className="px-5 py-4 font-bold">Module</th><th scope="col" className="px-5 py-4 text-center font-bold">Full</th><th scope="col" className="px-5 py-4 text-center font-bold">Lite</th></tr>
+                <tr><th scope="col" className="px-4 py-4 font-bold sm:px-5">Module</th><th scope="col" className="w-16 px-2 py-4 text-center font-bold sm:w-28 sm:px-5">Full</th><th scope="col" className="w-16 px-2 py-4 text-center font-bold sm:w-28 sm:px-5">Lite</th></tr>
               </thead>
               <tbody className="divide-y divide-navy/10">
                 {[...MODULES.map((m) => ({ name: m.name, ...m.editions })), ...EXTRA].map((r) => (
-                  <tr key={r.name}><th scope="row" className="px-5 py-3 font-medium text-ink">{r.name}</th><td className="px-5 py-3"><Mark on={r.full} label="Full" /></td><td className="px-5 py-3"><Mark on={r.lite} label="Lite" /></td></tr>
+                  <tr key={r.name}><th scope="row" className="px-4 py-3 font-medium text-ink break-words sm:px-5">{r.name === "HR & Payroll" ? "HR & staff records" : r.name}</th><td className="px-2 py-3 sm:px-5"><Mark on={r.full} label="Full" /></td><td className="px-2 py-3 sm:px-5"><Mark on={r.lite} label="Lite" /></td></tr>
                 ))}
               </tbody>
             </table>
