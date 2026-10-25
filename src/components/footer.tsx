@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NAV, withBase } from "@/lib/site";
+import { CONTACT_EMAIL, COUNTRIES, NAV, withBase } from "@/lib/site";
 import { MODULES } from "@/lib/modules";
 import { ButtonLink, Container } from "@/components/ui";
 
@@ -31,6 +31,7 @@ export function Footer() {
             <li><Link className="hover:text-mint" href="/about/">About</Link></li>
             <li><Link className="hover:text-mint" href="/contact/">Contact</Link></li>
             <li><Link className="hover:text-mint" href="/blog/">Blog</Link></li>
+            <li><a className="break-all hover:text-mint" href={`mailto:${CONTACT_EMAIL}`}>Email: {CONTACT_EMAIL}</a></li>
           </ul>
         </div>
       </Container>
@@ -38,7 +39,7 @@ export function Footer() {
         <Container className="flex flex-col gap-2 py-6 text-xs sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} SOD Infotech. All rights reserved.</p>
           <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            {[["ae", "UAE"], ["qa", "Qatar"], ["in", "India"]].map(([c, n], i) => (
+            {COUNTRIES.map(({ code: c, name: n }, i) => (
               <span key={c} className="inline-flex items-center gap-2">
                 {i > 0 && <span className="text-white/30" aria-hidden>|</span>}
                 {/* eslint-disable-next-line @next/next/no-img-element */}

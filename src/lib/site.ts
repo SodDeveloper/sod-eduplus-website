@@ -52,9 +52,10 @@ export const NAV = [
   { href: "/contact/", label: "Contact" },
 ];
 
-// Source: official SOD Infotech site https://sodinfotech.com/contact (branch list).
-export const BRANCHES = [
-  { name: "Doha office", address: "Building No 43, Street 46, Zone 46, Doha, Qatar" },
-  { name: "Dubai office", address: "Meydan Grandstand, 6th Floor, Meydan Road, Nad Al Sheba, Dubai, UAE", phone: "+971 58 907 4828" },
-  { name: "Kochi office", address: "Jigsaw, Kandamkulathy Towers, MG Road, Ernakulam, Kerala 682011, India" },
+export const CONTACT_EMAIL = "contact@sodeduplus.com";
+
+export const COUNTRIES = [
+  { code: "ae", name: "UAE" },
+  { code: "qa", name: "Qatar" },
+  { code: "in", name: "India" },
 ];

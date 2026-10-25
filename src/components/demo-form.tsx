@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { AlertCircle, Check, CheckCircle2, Copy, ExternalLink, Loader2 } from "lucide-react";
 import { EMAIL_RE, PHONE_RE, isPreviewMode, postLead, readJson } from "@/lib/lead";
-import { DEMO_LOGINS, LEAD_DEMO_TYPE, LEAD_SOURCE, LEAD_TAG, PRODUCT, PRODUCT_KEY } from "@/lib/site";
+import { CONTACT_EMAIL, DEMO_LOGINS, LEAD_DEMO_TYPE, LEAD_SOURCE, LEAD_TAG, PRODUCT, PRODUCT_KEY } from "@/lib/site";
 import { btn } from "@/components/ui";
 import { FIELD } from "@/components/contact-form";
 import { cn } from "@/lib/utils";
@@ -84,11 +84,11 @@ export function DemoForm() {
           : { ...base, interest: `${PRODUCT} demo (Full + Lite)`, message: `Demo request for ${PRODUCT} (innovative school ERP). Tag: ${LEAD_TAG}. Source: ${LEAD_SOURCE}.` },
       );
       if (res.status === 429) { setServerError("Too many requests. Please wait a minute and try again."); return; }
-      if (!res.ok) { setServerError(`Sorry, something went wrong. Please try again later.`); return; }
+      if (!res.ok) { setServerError(`Sorry, something went wrong. Please try again later or email ${CONTACT_EMAIL}.`); return; }
       const d = readDemos(await readJson(res)) ?? configuredDemos();
       if (d) { setDemos(d); setStep("success"); } else setStep("thanks");
     } catch {
-      setServerError(`Sorry, something went wrong. Please try again later.`);
+      setServerError(`Sorry, something went wrong. Please try again later or email ${CONTACT_EMAIL}.`);
     } finally { setSending(false); }
   }
 

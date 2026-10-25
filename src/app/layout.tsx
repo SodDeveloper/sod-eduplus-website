@@ -3,7 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { BASE_PATH, CORE_LINE, SITE_URL, withBase } from "@/lib/site";
+import { BASE_PATH, CONTACT_EMAIL, CORE_LINE, SITE_URL, withBase } from "@/lib/site";
 import { abs } from "@/lib/meta";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta", display: "swap" });
@@ -33,7 +33,7 @@ export const viewport: Viewport = { themeColor: "#252F78", width: "device-width"
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", name: "SOD Infotech", url: SITE_URL, logo: abs("/android-chrome-512x512.png") },
+    { "@type": "Organization", name: "SOD Infotech", url: SITE_URL, logo: abs("/android-chrome-512x512.png"), email: CONTACT_EMAIL },
     {
       "@type": "SoftwareApplication",
       name: "SOD EduPlus",

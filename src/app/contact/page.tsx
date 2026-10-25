@@ -1,11 +1,11 @@
-import { MapPin, Phone } from "lucide-react";
+import { Globe, Mail } from "lucide-react";
 import { pageMeta } from "@/lib/meta";
-import { BRANCHES } from "@/lib/site";
+import { CONTACT_EMAIL, COUNTRIES, withBase } from "@/lib/site";
 import { Container, PageHero } from "@/components/ui";
 import { ContactForm } from "@/components/contact-form";
 import { WhatsAppButton } from "@/components/whatsapp";
 
-export const metadata = pageMeta("Contact", "Contact the SOD EduPlus team by email, phone or the contact form.", "/contact/");
+export const metadata = pageMeta("Contact", "Contact the SOD EduPlus team by email or the contact form.", "/contact/");
 
 export default function ContactPage() {
   return (
@@ -16,14 +16,25 @@ export default function ContactPage() {
           <div>
             <h2 className="text-2xl font-extrabold text-navy">Get in touch</h2>
             <ul className="mt-6 space-y-4">
-              {BRANCHES.map((b) => (
-                <li key={b.name} className="flex gap-3">
-                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden />
-                  <span><span className="block font-semibold text-navy">{b.name}</span><span className="text-sm text-ink/70">{b.address}</span>
-                    {b.phone ? <a href={`tel:${b.phone.replace(/\s/g, "")}`} className="mt-1 flex items-center gap-1 text-sm text-ink/70 hover:text-navy"><Phone className="h-3.5 w-3.5" aria-hidden />{b.phone}</a> : null}
+              <li className="flex gap-3">
+                <Mail className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden />
+                <span><span className="block font-semibold text-navy">Email</span><a href={`mailto:${CONTACT_EMAIL}`} className="break-all text-sm text-ink/70 hover:text-navy">{CONTACT_EMAIL}</a></span>
+              </li>
+              <li className="flex gap-3">
+                <Globe className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden />
+                <span><span className="block font-semibold text-navy">Countries</span>
+                  <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink/70">
+                    {COUNTRIES.map((c, i) => (
+                      <span key={c.code} className="inline-flex items-center gap-2">
+                        {i > 0 && <span className="text-ink/30" aria-hidden>|</span>}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={withBase(`/flags/${c.code}.svg`)} alt="" width={20} height={14} className="h-3.5 w-5 rounded-[2px] object-cover ring-1 ring-navy/10" loading="lazy" />
+                        {c.name}
+                      </span>
+                    ))}
                   </span>
-                </li>
-              ))}
+                </span>
+              </li>
             </ul>
             <WhatsAppButton className="mt-8" />
           </div>
