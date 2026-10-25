@@ -17,3 +17,6 @@ body { @apply bg-white text-ink antialiased; }
 .brand-gradient { background: linear-gradient(135deg, #1B2563 0%, #252F78 45%, #1f6f8f 80%, #25AEAC 100%); }
 .text-gradient { background: linear-gradient(90deg, #25AEAC, #40E1C2); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.no-scrollbar{scrollbar-width:none;-ms-overflow-style:none}
+.no-scrollbar::-webkit-scrollbar{display:none}

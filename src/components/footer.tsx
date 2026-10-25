@@ -38,7 +38,16 @@ export function Footer() {
       <div className="border-t border-white/10">
         <Container className="flex flex-col gap-2 py-6 text-xs sm:flex-row sm:justify-between">
           <p>© {new Date().getFullYear()} SOD Infotech. All rights reserved.</p>
-          <p>SOD EduPlus · Innovative school ERP</p>
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            {[["ae", "UAE"], ["qa", "Qatar"], ["in", "India"]].map(([c, n], i) => (
+              <span key={c} className="inline-flex items-center gap-2">
+                {i > 0 && <span className="text-white/30" aria-hidden>|</span>}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={withBase(`/flags/${c}.svg`)} alt="" width={20} height={14} className="h-3.5 w-5 rounded-[2px] object-cover ring-1 ring-white/20" loading="lazy" />
+                {n}
+              </span>
+            ))}
+          </p>
         </Container>
       </div>
     </footer>

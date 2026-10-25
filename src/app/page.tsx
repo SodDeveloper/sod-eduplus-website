@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { withBase } from "@/lib/site";
 import {
   ArrowRight, BookOpen, Bus, CalendarCheck, Check, ClipboardList, CreditCard, GraduationCap, Languages,
   LayoutDashboard, Megaphone, Smartphone, UserPlus, Users, Wallet,
@@ -38,10 +39,7 @@ export default function Home() {
       <section className="brand-gradient relative overflow-hidden text-white">
         <Container className="grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-[1fr_1.15fr] lg:py-24">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-mint ring-1 ring-white/15">
-              <span className="h-1.5 w-1.5 rounded-full bg-mint" aria-hidden /> Innovative school ERP
-            </p>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.4rem]">
               Run your whole school from <span className="text-gradient">one place</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
@@ -57,7 +55,20 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <MotionScreen name="01_dashboard" label="SOD EduPlus principal dashboard" eager className="ring-1 ring-white/15" />
+          <div className="relative pb-10 lg:pb-12 lg:pr-10">
+            <div className="overflow-hidden rounded-2xl bg-white shadow-[0_30px_80px_-20px_rgba(0,0,0,0.55)] ring-1 ring-white/15">
+              <div className="flex items-center gap-1.5 border-b border-navy/10 bg-[#f1f4f8] px-4 py-2.5" aria-hidden>
+                <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" /><span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" /><span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                <span className="ml-3 flex-1 truncate rounded-md bg-white px-3 py-1 text-[11px] text-ink/50">SOD EduPlus · Principal dashboard</span>
+              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={withBase("/shots/hero_dashboard.webp")} alt="SOD EduPlus principal dashboard" width={2400} height={1500} className="block h-auto w-full" fetchPriority="high" />
+            </div>
+            <div className="absolute -bottom-2 right-0 w-[26%] max-w-[190px] overflow-hidden rounded-[1.6rem] border-[5px] border-navy-deep bg-white shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={withBase("/shots/hero_portal.webp")} alt="SOD EduPlus parent portal on mobile" width={720} height={1558} className="block h-auto w-full" />
+            </div>
+          </div>
         </Container>
       </section>
 

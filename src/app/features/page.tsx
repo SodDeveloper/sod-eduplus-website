@@ -14,7 +14,7 @@ export default function FeaturesPage() {
         <ButtonLink href="/demo/" size="lg">Request a demo</ButtonLink>
       </PageHero>
       <nav aria-label="Modules" className="sticky top-16 z-40 border-b border-navy/10 bg-white/95 backdrop-blur">
-        <Container className="flex gap-2 overflow-x-auto py-3">
+        <Container className="no-scrollbar flex gap-2 overflow-x-auto py-3 lg:flex-wrap lg:justify-center lg:overflow-visible">
           {MODULES.map((m) => <a key={m.slug} href={`#${m.slug}`} className="shrink-0 rounded-full bg-mist px-3 py-1.5 text-sm font-medium text-navy hover:bg-teal/10">{m.name}</a>)}
         </Container>
       </nav>

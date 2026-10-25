@@ -1,5 +1,6 @@
 import { HeartHandshake, Lightbulb, LifeBuoy } from "lucide-react";
 import { pageMeta } from "@/lib/meta";
+import { withBase } from "@/lib/site";
 import { Container, PageHero } from "@/components/ui";
 import { CtaBand } from "@/components/cta";
 
@@ -16,7 +17,8 @@ export default function AboutPage() {
             <p>Schools should spend their time on teaching, not paperwork. SOD EduPlus gives owners, principals and staff one innovative school ERP for admissions, academics, fees and communication, so information is entered once and is always up to date.</p>
             <p>We work closely with each school during setup, migrate existing data, train staff and stay on hand afterwards.</p>
           </div>
-          <div className="flex aspect-[4/3] items-center justify-center rounded-3xl border border-dashed border-navy/25 bg-mist text-ink/45">[Directors photo]</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={withBase("/photos/school-classroom.webp")} alt="Students learning in a modern school classroom (photo: Yan Krukau, Pexels)" width={1200} height={800} className="aspect-[4/3] w-full rounded-3xl object-cover card-shadow" loading="lazy" />
         </Container>
       </section>
       <section className="bg-mist py-16">
