@@ -35,7 +35,6 @@ export const DEMO_LOGINS = {
 
 /** WhatsApp click-to-chat number in international format without "+" (empty = button hidden). */
 export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
-export const CONTACT_EMAIL = "info@sodinfotech.com";
 
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export function withBase(path: string): string {

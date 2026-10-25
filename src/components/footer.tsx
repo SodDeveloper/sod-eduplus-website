@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CONTACT_EMAIL, NAV, withBase } from "@/lib/site";
+import { NAV, withBase } from "@/lib/site";
 import { MODULES } from "@/lib/modules";
 import { ButtonLink, Container } from "@/components/ui";
 
@@ -31,7 +31,6 @@ export function Footer() {
             <li><Link className="hover:text-mint" href="/about/">About</Link></li>
             <li><Link className="hover:text-mint" href="/contact/">Contact</Link></li>
             <li><Link className="hover:text-mint" href="/blog/">Blog</Link></li>
-            <li><a className="hover:text-mint" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
           </ul>
         </div>
       </Container>

@@ -33,7 +33,7 @@ export const viewport: Viewport = { themeColor: "#252F78", width: "device-width"
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Organization", name: "SOD Infotech", url: SITE_URL, logo: abs("/android-chrome-512x512.png"), email: "info@sodinfotech.com" },
+    { "@type": "Organization", name: "SOD Infotech", url: SITE_URL, logo: abs("/android-chrome-512x512.png") },
     {
       "@type": "SoftwareApplication",
       name: "SOD EduPlus",

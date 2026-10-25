@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { EMAIL_RE, PHONE_RE, isPreviewMode, postLead } from "@/lib/lead";
-import { CONTACT_EMAIL, LEAD_SOURCE, LEAD_TAG, PRODUCT, PRODUCT_KEY } from "@/lib/site";
+import { LEAD_SOURCE, LEAD_TAG, PRODUCT, PRODUCT_KEY } from "@/lib/site";
 import { btn } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -33,7 +33,7 @@ export function ContactForm({ kind }: { kind: "contact" | "pricing" }) {
       if (!res.ok) throw new Error(String(res.status));
       setStatus("ok"); form.reset();
     } catch {
-      setStatus("err"); setMsg(`Sorry, we could not send your message. Please email us at ${CONTACT_EMAIL}.`);
+      setStatus("err"); setMsg(`Sorry, we could not send your message. Please try again later.`);
     }
   }
 

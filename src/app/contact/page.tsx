@@ -1,6 +1,6 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { pageMeta } from "@/lib/meta";
-import { BRANCHES, CONTACT_EMAIL } from "@/lib/site";
+import { BRANCHES } from "@/lib/site";
 import { Container, PageHero } from "@/components/ui";
 import { ContactForm } from "@/components/contact-form";
 import { WhatsAppButton } from "@/components/whatsapp";
@@ -16,7 +16,6 @@ export default function ContactPage() {
           <div>
             <h2 className="text-2xl font-extrabold text-navy">Get in touch</h2>
             <ul className="mt-6 space-y-4">
-              <li className="flex gap-3"><Mail className="mt-0.5 h-5 w-5 text-teal" aria-hidden /><a className="font-semibold text-navy hover:underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
               {BRANCHES.map((b) => (
                 <li key={b.name} className="flex gap-3">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-teal" aria-hidden />
