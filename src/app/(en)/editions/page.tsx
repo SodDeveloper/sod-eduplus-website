@@ -58,7 +58,7 @@ export default function EditionsPage() {
             <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal/10 text-teal"><Baby className="h-7 w-7" aria-hidden /></span>
             <div>
               <p className="text-xs font-bold text-teal">Separate edition</p>
-              <h2 className="mt-1 flex flex-wrap items-center gap-2 text-2xl font-extrabold text-navy">{KG.en.name}<span className="rounded-full bg-mint/20 px-2.5 py-0.5 text-xs font-semibold text-teal">{KG.en.badge}</span></h2>
+              <h2 className="mt-1 flex flex-wrap items-center gap-2 text-2xl font-extrabold text-navy">{KG.en.name}</h2>
               <p className="mt-2 text-ink/70">{KG.en.short} EduPlus Kindergarten is its own product with its own Lite and Full editions. It is not part of the K-12 editions above.</p>
               <p className="mt-2 text-sm text-ink/60">{KG.en.editionsBody}</p>
             </div>

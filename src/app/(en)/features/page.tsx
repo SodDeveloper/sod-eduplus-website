@@ -41,7 +41,6 @@ export default function FeaturesPage() {
       <section id="kindergarten" className="scroll-mt-32 brand-gradient py-16 text-white">
         <Container className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
           <div>
-            <p className="inline-flex rounded-full bg-mint/20 px-3 py-1 text-xs font-bold text-mint ring-1 ring-mint/40">{KG.en.badge}</p>
             <h2 className="mt-3 text-3xl font-extrabold tracking-tight">{KG.en.name}</h2>
             <p className="mt-4 text-lg text-white/80">{KG.en.intro}</p>
           </div>

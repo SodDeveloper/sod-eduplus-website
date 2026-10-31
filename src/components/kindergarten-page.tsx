@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Baby, BookHeart, CalendarClock, Globe2, Language
 import { KG, type KgIcon } from "@/lib/kindergarten";
 import type { Locale } from "@/lib/i18n";
 import { ButtonLink, Container, PageHero, SectionHeading } from "@/components/ui";
+import { withBase } from "@/lib/site";
 import { CtaBand } from "@/components/cta";
 
 const ICONS: Record<KgIcon, LucideIcon> = {
@@ -17,17 +18,15 @@ export function KindergartenPage({ locale }: { locale: Locale }) {
   const Back = ar ? ArrowRight : ArrowLeft;
   return (
     <>
-      <PageHero eyebrow={t.eyebrow} title={t.title} body={t.intro}>
-        <span className="inline-flex items-center rounded-full bg-mint/20 px-4 py-2 text-sm font-bold text-mint ring-1 ring-mint/40">{t.badge}</span>
+      <PageHero eyebrow={t.eyebrow} title={t.title} body={t.intro} aside={
+        // eslint-disable-next-line @next/next/no-img-element
+        <div className="w-full max-w-sm rounded-3xl bg-white p-5 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.5)]"><img src={withBase("/brand/kindergarten-logo.webp")} alt="SOD EduPlus Kindergarten" width={800} height={323} className="h-auto w-full" /></div>
+      }>
         <ButtonLink href={p("/demo/")} size="lg">{t.demo}</ButtonLink>
         <ButtonLink href={p("/contact/")} variant="ghostLight" size="lg">{t.contact}</ButtonLink>
       </PageHero>
       <section className="py-16">
         <Container>
-          <div className="mb-10 rounded-2xl border border-teal/30 bg-teal/5 p-5">
-            <p className="font-bold text-navy">{t.statusTitle}</p>
-            <p className="mt-1 text-sm text-ink/70">{t.statusBody}</p>
-          </div>
           <SectionHeading title={t.whatTitle} />
           <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {t.features.map((f) => {

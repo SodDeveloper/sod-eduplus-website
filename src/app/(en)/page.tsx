@@ -110,7 +110,7 @@ export default function Home() {
               <Link href="/features/kindergarten/" className="group flex h-full gap-4 rounded-2xl bg-white p-5 card-shadow transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-teal">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal/10 text-teal"><Baby className="h-5 w-5" aria-hidden /></span>
                 <span>
-                  <span className="flex flex-wrap items-center gap-2 font-bold text-navy group-hover:text-teal">{KG.en.name}<span className="rounded-full bg-mint/20 px-2 py-0.5 text-[11px] font-semibold text-teal">{KG.en.badge}</span></span>
+                  <span className="flex flex-wrap items-center gap-2 font-bold text-navy group-hover:text-teal">{KG.en.name}</span>
                   <span className="mt-1 block text-sm text-ink/65">{KG.en.short}</span>
                 </span>
               </Link>
