@@ -1,5 +1,6 @@
-import { Check, Minus } from "lucide-react";
+import { Baby, Check, Minus } from "lucide-react";
 import { MODULES } from "@/lib/modules";
+import { KG } from "@/lib/kindergarten";
 import { pageMeta } from "@/lib/meta";
 import { ButtonLink, Container, PageHero } from "@/components/ui";
 import { CtaBand } from "@/components/cta";
@@ -52,6 +53,17 @@ export default function EditionsPage() {
             </table>
           </div>
           <p className="mt-4 text-sm text-ink/55">Module depth can differ between editions. Ask us for the detailed breakdown for your school.</p>
+
+          <div className="mt-16 grid items-center gap-6 rounded-3xl border border-teal/30 bg-mist p-8 md:grid-cols-[auto_1fr_auto]">
+            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal/10 text-teal"><Baby className="h-7 w-7" aria-hidden /></span>
+            <div>
+              <p className="text-xs font-bold text-teal">Separate edition</p>
+              <h2 className="mt-1 flex flex-wrap items-center gap-2 text-2xl font-extrabold text-navy">{KG.en.name}<span className="rounded-full bg-mint/20 px-2.5 py-0.5 text-xs font-semibold text-teal">{KG.en.badge}</span></h2>
+              <p className="mt-2 text-ink/70">{KG.en.short} EduPlus Kindergarten is its own product with its own Lite and Full editions. It is not part of the K-12 editions above.</p>
+              <p className="mt-2 text-sm text-ink/60">{KG.en.editionsBody}</p>
+            </div>
+            <ButtonLink href="/features/kindergarten/" variant="outline">{KG.en.learn}</ButtonLink>
+          </div>
         </Container>
       </section>
       <CtaBand title="Not sure which edition fits?" body="Tell us about your school and we will recommend the right starting point." />

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { MODULES } from "@/lib/modules";
+import { KG } from "@/lib/kindergarten";
 import { pageMeta } from "@/lib/meta";
 import { ButtonLink, Container, PageHero, Shot } from "@/components/ui";
 import { CtaBand } from "@/components/cta";
@@ -16,6 +17,7 @@ export default function FeaturesPage() {
       <nav aria-label="Modules" className="sticky top-16 z-40 border-b border-navy/10 bg-white/95 backdrop-blur">
         <Container className="no-scrollbar flex gap-2 overflow-x-auto py-3 lg:flex-wrap lg:justify-center lg:overflow-visible">
           {MODULES.map((m) => <a key={m.slug} href={`#${m.slug}`} className="shrink-0 rounded-full bg-mist px-3 py-1.5 text-sm font-medium text-navy hover:bg-teal/10">{m.name}</a>)}
+          <a href="#kindergarten" className="shrink-0 rounded-full bg-mist px-3 py-1.5 text-sm font-medium text-navy hover:bg-teal/10">{KG.en.name}</a>
         </Container>
       </nav>
       {MODULES.map((m, i) => (
@@ -36,6 +38,18 @@ export default function FeaturesPage() {
           </Container>
         </section>
       ))}
+      <section id="kindergarten" className="scroll-mt-32 brand-gradient py-16 text-white">
+        <Container className="grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
+          <div>
+            <p className="inline-flex rounded-full bg-mint/20 px-3 py-1 text-xs font-bold text-mint ring-1 ring-mint/40">{KG.en.badge}</p>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight">{KG.en.name}</h2>
+            <p className="mt-4 text-lg text-white/80">{KG.en.intro}</p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <ButtonLink href="/features/kindergarten/" variant="light" size="lg">{KG.en.learn} <ArrowRight className="h-4 w-4" aria-hidden /></ButtonLink>
+          </div>
+        </Container>
+      </section>
       <CtaBand />
     </>
   );

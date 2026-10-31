@@ -1,5 +1,6 @@
-import { Check, Minus } from "lucide-react";
+import { Baby, Check, Minus } from "lucide-react";
 import { MODULES } from "@/lib/modules";
+import { KG } from "@/lib/kindergarten";
 import { MODULES_AR } from "@/lib/modules-ar";
 import { pageMetaAr } from "@/lib/meta";
 import { ButtonLink, Container, PageHero } from "@/components/ui";
@@ -54,6 +55,17 @@ export default function EditionsPageAr() {
             </table>
           </div>
           <p className="mt-4 text-sm text-ink/55">قد يختلف عمق الوحدات بين الإصدارين. اطلب منا التفاصيل الكاملة الخاصة بمدرستك.</p>
+
+          <div className="mt-16 grid items-center gap-6 rounded-3xl border border-teal/30 bg-mist p-8 md:grid-cols-[auto_1fr_auto]">
+            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal/10 text-teal"><Baby className="h-7 w-7" aria-hidden /></span>
+            <div>
+              <p className="text-xs font-bold text-teal">إصدار مستقل</p>
+              <h2 className="mt-1 flex flex-wrap items-center gap-2 text-2xl font-extrabold text-navy">{KG.ar.name}<span className="rounded-full bg-mint/20 px-2.5 py-0.5 text-xs font-semibold text-teal">{KG.ar.badge}</span></h2>
+              <p className="mt-2 text-ink/70">{KG.ar.short} EduPlus Kindergarten منتج مستقل له إصداران Lite وFull خاصّان به، وليس جزءًا من إصدارات المدارس (K-12) المذكورة أعلاه.</p>
+              <p className="mt-2 text-sm text-ink/60">{KG.ar.editionsBody}</p>
+            </div>
+            <ButtonLink href="/ar/features/kindergarten/" variant="outline">{KG.ar.learn}</ButtonLink>
+          </div>
         </Container>
       </section>
       <CtaBand locale="ar" title="لست متأكدًا أي إصدار يناسبك؟" body="أخبرنا عن مدرستك وسنقترح عليك نقطة البداية المناسبة." />

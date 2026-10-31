@@ -2,9 +2,10 @@ import Link from "next/link";
 import { withBase } from "@/lib/site";
 import {
   ArrowLeft, BookOpen, Bus, CalendarCheck, Check, ClipboardList, CreditCard, GraduationCap, Languages,
-  LayoutDashboard, Megaphone, Smartphone, UserPlus, Users, Wallet,
+  Baby, LayoutDashboard, Megaphone, Smartphone, UserPlus, Users, Wallet,
 } from "lucide-react";
 import { MODULES } from "@/lib/modules";
+import { KG } from "@/lib/kindergarten";
 import { MODULES_AR } from "@/lib/modules-ar";
 import { pageMetaAr } from "@/lib/meta";
 import { ButtonLink, Container, SectionHeading, Shot } from "@/components/ui";
@@ -105,6 +106,15 @@ export default function HomeAr() {
                 </li>
               );
             })}
+            <li>
+              <Link href="/ar/features/kindergarten/" className="group flex h-full gap-4 rounded-2xl bg-white p-5 card-shadow transition hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-teal">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal/10 text-teal"><Baby className="h-5 w-5" aria-hidden /></span>
+                <span>
+                  <span className="flex flex-wrap items-center gap-2 font-bold text-navy group-hover:text-teal">{KG.ar.name}<span className="rounded-full bg-mint/20 px-2 py-0.5 text-[11px] font-semibold text-teal">{KG.ar.badge}</span></span>
+                  <span className="mt-1 block text-sm text-ink/65">{KG.ar.short}</span>
+                </span>
+              </Link>
+            </li>
           </ul>
         </Container>
       </section>

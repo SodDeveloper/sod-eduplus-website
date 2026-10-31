@@ -4,6 +4,7 @@ import { CONTACT_EMAIL, COUNTRIES, NAV, withBase } from "@/lib/site";
 import { COUNTRIES_AR, NAV_AR, type Locale } from "@/lib/i18n";
 import { MODULES } from "@/lib/modules";
 import { MODULES_AR } from "@/lib/modules-ar";
+import { KG } from "@/lib/kindergarten";
 import { ButtonLink, Container } from "@/components/ui";
 
 const T = {
@@ -35,6 +36,7 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           <h2 className="text-sm font-bold text-white">{t.modules}</h2>
           <ul className="mt-3 grid grid-cols-1 gap-2 text-sm">
             {MODULES.slice(0, 7).map((m) => <li key={m.slug}><Link className="hover:text-mint" href={p(`/features/${m.slug}/`)}>{ar ? MODULES_AR[m.slug].name : m.name}</Link></li>)}
+            <li><Link className="hover:text-mint" href={p("/features/kindergarten/")}>{KG[locale].name}</Link></li>
           </ul>
         </div>
         <div>

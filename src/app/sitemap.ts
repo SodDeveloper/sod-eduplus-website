@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entries = [
     ...pages.map((p) => ({ p, priority: p === "/" ? 1 : p === "/demo/" ? 0.9 : 0.7 })),
     ...MODULES.map((m) => ({ p: `/features/${m.slug}/`, priority: 0.6 })),
+    { p: "/features/kindergarten/", priority: 0.6 },
   ];
   return entries.flatMap(({ p, priority }) => [
     { url: abs(p), changeFrequency: "monthly" as const, priority, alternates: { languages: languages(p) } },
