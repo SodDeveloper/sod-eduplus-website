@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
   env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  // English and Arabic use separate root layouts (lang/dir), so the site-wide 404 is a global not-found page.
+  experimental: { globalNotFound: true },
 };
 
 export default nextConfig;

@@ -41,11 +41,18 @@ function readDemos(body: unknown): Demos | null {
   return out.full || out.lite ? out : null;
 }
 
+const T = {
+  en: { name: "Please enter your name.", phone: "Please enter a valid phone number with country code.", email: "Please enter a valid email address.", many: "Too many requests. Please wait a minute and try again.", fail: (e: string) => `Sorry, something went wrong. Please try again later or email ${e}.`, previewH: "Demo request received (preview mode)", thanksH: "Thank you, your request has been received", contact: "Our team will contact you within one working day to arrange your demo.", previewP: "This preview site is not connected to our system yet, so no request was sent and no demo logins are shown.", ready: "Your demo is ready", readyP: "Use these logins to explore both editions. Our team will also be in touch within one working day.", fullT: "Full demo", fullB: "The complete innovative school ERP with every module.", liteT: "Lite demo", liteB: "The essential modules for smaller schools.", sample: "Demo environments use sample data and may be reset regularly.", nameL: "Full name", namePh: "Your name", phoneL: "Phone (with country code)", emailL: "Work email", sending: "Sending…", submit: "Try live demo", privacy: "We use your details only to arrange your demo and follow up.", user: "Username", pass: "Password", open: "Open demo", copied: "Copied", copy: "Copy", copiedA: (l: string) => `${l} copied`, copyA: (l: string) => `Copy ${l.toLowerCase()}` },
+  ar: { name: "يرجى إدخال اسمك.", phone: "يرجى إدخال رقم هاتف صحيح مع رمز الدولة.", email: "يرجى إدخال بريد إلكتروني صحيح.", many: "طلبات كثيرة جدًا. يرجى الانتظار دقيقة ثم المحاولة مرة أخرى.", fail: (e: string) => `عذرًا، حدث خطأ ما. يرجى المحاولة لاحقًا أو مراسلتنا على ${e}.`, previewH: "تم استلام طلب العرض التجريبي (وضع المعاينة)", thanksH: "شكرًا لك، تم استلام طلبك", contact: "سيتواصل معك فريقنا خلال يوم عمل واحد لترتيب العرض التجريبي.", previewP: "موقع المعاينة هذا غير مرتبط بنظامنا بعد، لذلك لم يُرسَل أي طلب ولا تظهر بيانات دخول للعرض التجريبي.", ready: "عرضك التجريبي جاهز", readyP: "استخدم بيانات الدخول هذه لاستكشاف الإصدارين. وسيتواصل معك فريقنا أيضًا خلال يوم عمل واحد.", fullT: "العرض التجريبي للإصدار الكامل (Full)", fullB: "نظام ERP المدرسي المبتكر بكامل وحداته.", liteT: "العرض التجريبي للإصدار المختصر (Lite)", liteB: "الوحدات الأساسية للمدارس الأصغر حجمًا.", sample: "تستخدم بيئات العرض التجريبي بيانات نموذجية وقد يُعاد ضبطها بانتظام.", nameL: "الاسم الكامل", namePh: "اسمك", phoneL: "رقم الهاتف (مع رمز الدولة)", emailL: "البريد الإلكتروني للعمل", sending: "جارٍ الإرسال…", submit: "جرّب العرض التجريبي المباشر", privacy: "نستخدم بياناتك فقط لترتيب العرض التجريبي والمتابعة معك.", user: "اسم المستخدم", pass: "كلمة المرور", open: "افتح العرض التجريبي", copied: "تم النسخ", copy: "نسخ", copiedA: (l: string) => `تم نسخ ${l}`, copyA: (l: string) => `نسخ ${l}` },
+};
+type Dict = (typeof T)["en"];
+
 async function copyText(value: string) {
   try { await navigator.clipboard.writeText(value); return true; } catch { return false; }
 }
 
-export function DemoForm() {
+export function DemoForm({ locale = "en" }: { locale?: "en" | "ar" }) {
+  const t = T[locale];
   const [step, setStep] = useState<Step>("form");
   const [draft, setDraft] = useState<Draft>({ name: "", phone: "", email: "" });
   const [website, setWebsite] = useState("");
@@ -59,9 +66,9 @@ export function DemoForm() {
 
   function validate(): Errors {
     const e: Errors = {};
-    if (draft.name.trim().length < 2) e.name = "Please enter your name.";
-    if (!PHONE_RE.test(draft.phone.trim())) e.phone = "Please enter a valid phone number with country code.";
-    if (!EMAIL_RE.test(draft.email.trim())) e.email = "Please enter a valid email address.";
+    if (draft.name.trim().length < 2) e.name = t.name;
+    if (!PHONE_RE.test(draft.phone.trim())) e.phone = t.phone;
+    if (!EMAIL_RE.test(draft.email.trim())) e.email = t.email;
     return e;
   }
 
@@ -77,18 +84,18 @@ export function DemoForm() {
     if (isPreviewMode()) { setStep("preview"); return; }
     setSending(true); setServerError(null);
     try {
-      const base = { product: PRODUCT_KEY, tag: LEAD_TAG, source: LEAD_SOURCE, name: draft.name.trim(), phone: draft.phone.trim(), email: draft.email.trim(), website, locale: "en" };
+      const base = { product: PRODUCT_KEY, tag: LEAD_TAG, source: LEAD_SOURCE, name: draft.name.trim(), phone: draft.phone.trim(), email: draft.email.trim(), website, locale };
       const res = await postLead(
         LEAD_DEMO_TYPE === "demo"
           ? { type: "demo", ...base }
           : { ...base, interest: `${PRODUCT} demo (Full + Lite)`, message: `Demo request for ${PRODUCT} (innovative school ERP). Tag: ${LEAD_TAG}. Source: ${LEAD_SOURCE}.` },
       );
-      if (res.status === 429) { setServerError("Too many requests. Please wait a minute and try again."); return; }
-      if (!res.ok) { setServerError(`Sorry, something went wrong. Please try again later or email ${CONTACT_EMAIL}.`); return; }
+      if (res.status === 429) { setServerError(t.many); return; }
+      if (!res.ok) { setServerError(t.fail(CONTACT_EMAIL)); return; }
       const d = readDemos(await readJson(res)) ?? configuredDemos();
       if (d) { setDemos(d); setStep("success"); } else setStep("thanks");
     } catch {
-      setServerError(`Sorry, something went wrong. Please try again later or email ${CONTACT_EMAIL}.`);
+      setServerError(t.fail(CONTACT_EMAIL));
     } finally { setSending(false); }
   }
 
@@ -96,9 +103,9 @@ export function DemoForm() {
     return (
       <div ref={resultRef} tabIndex={-1} role="status" className="text-center outline-none">
         <CheckCircle2 className="mx-auto h-12 w-12 text-teal" aria-hidden />
-        <h2 className="mt-4 text-2xl font-extrabold text-navy">{step === "preview" ? "Demo request received (preview mode)" : "Thank you, your request has been received"}</h2>
-        <p className="mt-3 text-ink/70">Our team will contact you within one working day to arrange your demo.</p>
-        {step === "preview" ? <p className="mt-4 rounded-xl bg-mist p-3 text-sm text-ink/60">This preview site is not connected to our system yet, so no request was sent and no demo logins are shown.</p> : null}
+        <h2 className="mt-4 text-2xl font-extrabold text-navy">{step === "preview" ? t.previewH : t.thanksH}</h2>
+        <p className="mt-3 text-ink/70">{t.contact}</p>
+        {step === "preview" ? <p className="mt-4 rounded-xl bg-mist p-3 text-sm text-ink/60">{t.previewP}</p> : null}
       </div>
     );
   }
@@ -108,14 +115,14 @@ export function DemoForm() {
       <div ref={resultRef} tabIndex={-1} className="outline-none">
         <div className="text-center">
           <CheckCircle2 className="mx-auto h-12 w-12 text-teal" aria-hidden />
-          <h2 className="mt-4 text-2xl font-extrabold text-navy">Your demo is ready</h2>
-          <p className="mt-2 text-ink/70">Use these logins to explore both editions. Our team will also be in touch within one working day.</p>
+          <h2 className="mt-4 text-2xl font-extrabold text-navy">{t.ready}</h2>
+          <p className="mt-2 text-ink/70">{t.readyP}</p>
         </div>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {demos.full ? <DemoCard title="Full demo" body="The complete innovative school ERP with every module." creds={demos.full} /> : null}
-          {demos.lite ? <DemoCard title="Lite demo" body="The essential modules for smaller schools." creds={demos.lite} /> : null}
+          {demos.full ? <DemoCard t={t} title={t.fullT} body={t.fullB} creds={demos.full} /> : null}
+          {demos.lite ? <DemoCard t={t} title={t.liteT} body={t.liteB} creds={demos.lite} /> : null}
         </div>
-        <p className="mt-4 text-center text-xs text-ink/50">Demo environments use sample data and may be reset regularly.</p>
+        <p className="mt-4 text-center text-xs text-ink/50">{t.sample}</p>
       </div>
     );
   }
@@ -136,35 +143,35 @@ export function DemoForm() {
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-4">
       <div className="hidden" aria-hidden><label>Website<input name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} /></label></div>
-      {field("name", "Full name", { autoComplete: "name", placeholder: "Your name" })}
-      {field("phone", "Phone (with country code)", { type: "tel", inputMode: "tel", dir: "ltr", autoComplete: "tel", placeholder: "+1 555 123 4567" })}
-      {field("email", "Work email", { type: "email", inputMode: "email", dir: "ltr", autoComplete: "email", placeholder: "you@school.edu" })}
+      {field("name", t.nameL, { autoComplete: "name", placeholder: t.namePh })}
+      {field("phone", t.phoneL, { type: "tel", inputMode: "tel", dir: "ltr", autoComplete: "tel", placeholder: "+1 555 123 4567" })}
+      {field("email", t.emailL, { type: "email", inputMode: "email", dir: "ltr", autoComplete: "email", placeholder: "you@school.edu" })}
       {serverError ? <div role="alert" className="flex items-start gap-2 rounded-xl bg-red-50 p-3 text-sm text-red-700"><AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden /><span>{serverError}</span></div> : null}
       <button type="submit" disabled={sending} className={cn(btn("primary", "lg"), "w-full")}>
-        {sending ? <><Loader2 className="h-5 w-5 animate-spin" aria-hidden />Sending…</> : "Try live demo"}
+        {sending ? <><Loader2 className="h-5 w-5 animate-spin" aria-hidden />{t.sending}</> : t.submit}
       </button>
-      <p className="text-center text-xs text-ink/50">We use your details only to arrange your demo and follow up.</p>
+      <p className="text-center text-xs text-ink/50">{t.privacy}</p>
     </form>
   );
 }
 
-function DemoCard({ title, body, creds }: { title: string; body: string; creds: Creds }) {
+function DemoCard({ t, title, body, creds }: { t: Dict; title: string; body: string; creds: Creds }) {
   return (
     <div className="flex flex-col rounded-2xl border border-navy/10 bg-mist p-5">
       <h3 className="text-lg font-extrabold text-navy">{title}</h3>
       <p className="mt-1 text-sm text-ink/65">{body}</p>
       <div className="mt-4 space-y-3">
-        <CredRow label="Username" value={creds.username} />
-        <CredRow label="Password" value={creds.password} />
+        <CredRow t={t} label={t.user} value={creds.username} />
+        <CredRow t={t} label={t.pass} value={creds.password} />
       </div>
       {creds.url ? (
-        <a href={creds.url} target="_blank" rel="noopener" className={cn(btn("navy", "md"), "mt-5 w-full")}>Open demo <ExternalLink className="h-4 w-4" aria-hidden /></a>
+        <a href={creds.url} target="_blank" rel="noopener" className={cn(btn("navy", "md"), "mt-5 w-full")}>{t.open} <ExternalLink className="h-4 w-4" aria-hidden /></a>
       ) : null}
     </div>
   );
 }
 
-function CredRow({ label, value }: { label: string; value: string }) {
+function CredRow({ t, label, value }: { t: Dict; label: string; value: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <div className="flex items-center gap-2 rounded-xl bg-white px-3 py-2">
@@ -172,10 +179,10 @@ function CredRow({ label, value }: { label: string; value: string }) {
         <p className="text-xs text-ink/50">{label}</p>
         <code dir="ltr" className="block break-all text-sm font-semibold text-ink">{value}</code>
       </div>
-      <button type="button" aria-label={copied ? `${label} copied` : `Copy ${label.toLowerCase()}`}
+      <button type="button" aria-label={copied ? t.copiedA(label) : t.copyA(label)}
         onClick={async () => { if (await copyText(value)) { setCopied(true); window.setTimeout(() => setCopied(false), 1500); } }}
         className="inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-semibold text-navy hover:bg-mist">
-        {copied ? <Check className="h-4 w-4 text-teal" aria-hidden /> : <Copy className="h-4 w-4" aria-hidden />}{copied ? "Copied" : "Copy"}
+        {copied ? <Check className="h-4 w-4 text-teal" aria-hidden /> : <Copy className="h-4 w-4" aria-hidden />}{copied ? t.copied : t.copy}
       </button>
     </div>
   );

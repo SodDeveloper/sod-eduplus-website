@@ -41,14 +41,17 @@ export function SectionHeading({ eyebrow, title, body, center, light }: { eyebro
   );
 }
 
-export function PageHero({ eyebrow, title, body, children }: { eyebrow: string; title: string; body: string; children?: ReactNode }) {
+export function PageHero({ eyebrow, title, body, children, aside }: { eyebrow: string; title: string; body: string; children?: ReactNode; aside?: ReactNode }) {
   return (
     <section className="brand-gradient text-white">
-      <Container className="py-16 sm:py-20">
+      <Container className={cn("py-16 sm:py-20", aside && "grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]")}>
+        {aside ? <div className="order-first lg:order-last flex lg:justify-end">{aside}</div> : null}
+        <div>
         <Eyebrow light>{eyebrow}</Eyebrow>
         <h1 className="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">{title}</h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">{body}</p>
         {children ? <div className="mt-8 flex flex-wrap gap-3">{children}</div> : null}
+        </div>
       </Container>
     </section>
   );
