@@ -6,7 +6,7 @@ import { withBase } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /** Looping product screen: muted, inline, lazy-loaded when near the viewport, with a pause control. */
-export function MotionScreen({ name, label, className, eager }: { name: string; label: string; className?: string; eager?: boolean }) {
+export function MotionScreen({ name, label, className, eager, locale = "en" }: { name: string; label: string; className?: string; eager?: boolean; locale?: "en" | "ar" }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [load, setLoad] = useState(false);
   const [playing, setPlaying] = useState(true);
@@ -80,8 +80,8 @@ export function MotionScreen({ name, label, className, eager }: { name: string; 
       <button
         type="button"
         onClick={toggle}
-        className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-navy-deep/70 text-white backdrop-blur hover:bg-navy-deep focus-visible:outline-2 focus-visible:outline-mint"
-        aria-label={playing ? `Pause animation: ${label}` : `Play animation: ${label}`}
+        className="absolute bottom-3 end-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-navy-deep/70 text-white backdrop-blur hover:bg-navy-deep focus-visible:outline-2 focus-visible:outline-mint"
+        aria-label={locale === "ar" ? (playing ? `إيقاف الحركة مؤقتًا: ${label}` : `تشغيل الحركة: ${label}`) : playing ? `Pause animation: ${label}` : `Play animation: ${label}`}
       >
         {playing ? <Pause className="h-4 w-4" aria-hidden /> : <Play className="h-4 w-4" aria-hidden />}
       </button>
