@@ -1,3 +1,4 @@
+import { LiveChat } from "@/components/livechat";
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "../globals.css";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <LiveChat />
       </body>
     </html>
   );

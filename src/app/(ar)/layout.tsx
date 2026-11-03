@@ -1,3 +1,4 @@
+import { LiveChat } from "@/components/livechat";
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans_Arabic, Plus_Jakarta_Sans } from "next/font/google";
 import "../globals.css";
@@ -58,6 +59,7 @@ export default function ArabicRootLayout({ children }: { children: React.ReactNo
         <Header locale="ar" />
         <main id="main">{children}</main>
         <Footer locale="ar" />
+        <LiveChat />
       </body>
     </html>
   );

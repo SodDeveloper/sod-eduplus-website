@@ -1,3 +1,4 @@
+import { LiveChat } from "@/components/livechat";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
@@ -22,6 +23,7 @@ export default function GlobalNotFound() {
           </Container>
         </main>
         <Footer />
+        <LiveChat />
       </body>
     </html>
   );
