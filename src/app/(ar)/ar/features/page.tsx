@@ -15,7 +15,7 @@ export default function FeaturesPageAr() {
       <PageHero eyebrow="المزايا" title="كل وحدة تحتاجها مدرستك" body="تعمل كل وحدة بشكل مستقل وتتشارك البيانات مع بقية الوحدات، فتُدخَل المعلومات مرة واحدة وتُستخدم في كل مكان.">
         <ButtonLink href="/ar/demo/" size="lg">اطلب عرضًا تجريبيًا</ButtonLink>
       </PageHero>
-      <nav aria-label="الوحدات" className="sticky top-16 z-40 border-b border-navy/10 bg-white/95 backdrop-blur">
+      <nav aria-label="الوحدات" className="sticky top-[var(--header-h)] z-40 border-b border-navy/10 bg-white">
         <Container className="no-scrollbar flex gap-2 overflow-x-auto py-3 lg:flex-wrap lg:justify-center lg:overflow-visible">
           {MODULES.map((m) => <a key={m.slug} href={`#${m.slug}`} className="shrink-0 rounded-full bg-mist px-3 py-1.5 text-sm font-medium text-navy hover:bg-teal/10">{MODULES_AR[m.slug].name}</a>)}
           <a href="#kindergarten" className="shrink-0 rounded-full bg-mist px-3 py-1.5 text-sm font-medium text-navy hover:bg-teal/10">{KG.ar.name}</a>

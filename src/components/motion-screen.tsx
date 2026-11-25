@@ -25,7 +25,7 @@ export function MotionScreen({ name, label, className, eager, locale = "en" }: {
           video.pause();
         }
       },
-      { rootMargin: "200px" },
+      { rootMargin: "40px 0px", threshold: 0.15 },
     );
     io.observe(video);
     return () => io.disconnect();
