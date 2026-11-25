@@ -10,8 +10,8 @@ import { btn, Container } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 const T = {
-  en: { skip: "Skip to content", home: "SOD EduPlus home", main: "Main", mobile: "Mobile", demo: "Request a demo", blog: "Blog", open: "Open menu", close: "Close menu", lang: "Language" },
-  ar: { skip: "انتقل إلى المحتوى", home: "الصفحة الرئيسية لـ SOD EduPlus", main: "القائمة الرئيسية", mobile: "قائمة الجوال", demo: "اطلب عرضًا تجريبيًا", blog: "المدونة", open: "فتح القائمة", close: "إغلاق القائمة", lang: "اللغة" },
+  en: { skip: "Skip to content", home: "SOD EduPlus home", tagline: "School On Demand", main: "Main", mobile: "Mobile", demo: "Request a demo", blog: "Blog", open: "Open menu", close: "Close menu", lang: "Language" },
+  ar: { skip: "انتقل إلى المحتوى", home: "الصفحة الرئيسية لـ SOD EduPlus", tagline: "المدرسة عند الطلب", main: "القائمة الرئيسية", mobile: "قائمة الجوال", demo: "اطلب عرضًا تجريبيًا", blog: "المدونة", open: "فتح القائمة", close: "إغلاق القائمة", lang: "اللغة" },
 };
 
 function LangSwitch({ locale, pathname, className }: { locale: Locale; pathname: string; className?: string }) {
@@ -43,12 +43,13 @@ export function Header({ locale = "en" }: { locale?: Locale }) {
   const blog = locale === "ar" ? "/ar/blog/" : "/blog/";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy/10 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-navy/10 bg-white">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-3 focus:rounded focus:bg-navy focus:px-3 focus:py-2 focus:text-white">{t.skip}</a>
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <Link href={home} className="shrink-0" aria-label={t.home}>
+      <Container className="flex h-[var(--header-h)] items-center justify-between gap-4">
+        <Link href={home} className="flex shrink-0 flex-col justify-center leading-none" aria-label={t.home}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={withBase("/brand/logo-horizontal-colour.png")} alt="SOD EduPlus" width={480} height={105} className="h-8 w-auto" />
+          <img src={withBase("/brand/logo-horizontal-colour.png")} alt="SOD EduPlus" width={480} height={105} className="h-7 w-auto sm:h-8" />
+          <span className="mt-0.5 text-[0.625rem] font-medium tracking-[0.06em] text-navy/55 sm:text-[0.6875rem]">{t.tagline}</span>
         </Link>
         <nav aria-label={t.main} className="hidden lg:block">
           <ul className="flex items-center gap-1">

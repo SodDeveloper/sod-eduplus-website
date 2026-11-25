@@ -1,4 +1,6 @@
 import { LiveChat } from "@/components/livechat";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { RevealOnScroll } from "@/components/reveal";
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "../globals.css";
@@ -56,6 +58,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <SmoothScroll />
+        <RevealOnScroll />
         <LiveChat />
       </body>
     </html>

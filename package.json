@@ -2,9 +2,13 @@
   "name": "sod-eduplus-website",
   "version": "0.1.0",
   "private": true,
-  "scripts": { "dev": "next dev", "build": "next build" },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build"
+  },
   "dependencies": {
     "clsx": "^2.1.1",
+    "lenis": "^1.3.28",
     "lucide-react": "^1.58.0",
     "next": "16.4.2",
     "react": "19.3.0",
